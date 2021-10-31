@@ -25,8 +25,8 @@ book::book()
   int length = 0;
   author = new char *[size];
   title = new char *[size];
-  price=new float[size];
-  stock=new int[size];
+  price = new float[size];
+  stock = new int[size];
 }
 
 void book ::input_data(const char *aut, const char *tit, float p, int s, int i)
@@ -46,7 +46,7 @@ void book ::input_data(const char *aut, const char *tit, float p, int s, int i)
   }
 
   price[i] = p;
-  stock[i]= s;
+  stock[i] = s;
   // cout<<author[i]<<endl;//
   // cout<<title[i]<<endl;//
 }
@@ -61,15 +61,18 @@ void book ::display()
 
 void book ::search()
 {
-    char name[80];
-char t[80];
 
+  char *name;
+  name = new char[80];
+
+  char *t;
+  t = new char[80];
 
   cout << "\nEnter name of author" << endl;
   cin.ignore();
-  cin.getline(name, sizeof(name));
+  cin.getline(name, 80);
   cout << "Enter title of book" << endl;
-  cin.getline(t, sizeof(t));
+  cin.getline(t, 80);
   int a, b;
   for (int i = 0; i < size; i++)
   {
@@ -78,29 +81,30 @@ char t[80];
     if (a == 0 && b == 0)
     {
       cout << "Book is available" << endl;
-      cout<< "How much do you want to order"<<endl;
-      cin>>no_copie;
+      cout << "How much do you want to order" << endl;
+      cin >> no_copie;
 
-      if ( stock[i]-no_copie<0)
+      if (stock[i] - no_copie < 0)
       {
-        cout<<"copies are not available"<<endl;
-
-
-      }else{
-        stock[i]=stock[i]-no_copie;
-        total_price=price[i]*no_copie;
-        cout<<"Total price will be = "<<total_price<<endl;
+        cout << "copies are not available" << endl;
       }
-
+      else
+      {
+        stock[i] = stock[i] - no_copie;
+        total_price = price[i] * no_copie;
+        cout << "Total price will be = " << total_price << endl;
+      }
     }
   }
 }
 int main()
 {
   book b;
-  char name[80];
-char t[80];
+  char *name;
+  name = new char[80];
 
+  char *t;
+  t = new char[80];
 
   int s;
   float p;
@@ -108,9 +112,9 @@ char t[80];
   {
     cout << "\nEnter name of author" << endl;
     cin.ignore();
-    cin.getline(name, sizeof(name));
+    cin.getline(name, 80);
     cout << "Enter title of book" << endl;
-    cin.getline(t, sizeof(t));
+    cin.getline(t, 80);
     cout << "Enter price" << endl;
     cin >> p;
     cout << "Enter stock" << endl;
